@@ -1,0 +1,217 @@
+ScreenManager:
+    LoginScreen:
+    DashboardScreen:
+
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 35
+        spacing: 14
+        canvas.before:
+            Color:
+                rgba: (0.88, 0.94, 1, 1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: '150dp'
+            padding: 20
+            spacing: 8
+            canvas.before:
+                Color:
+                    rgba: (1, 1, 1, 0.35)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [24, 24, 24, 24]
+
+            Label:
+                text: '🌸 Suivi des règles'
+                font_size: '30sp'
+                bold: True
+                color: (0.46, 0.12, 0.32, 1)
+                halign: 'center'
+                valign: 'middle'
+                text_size: self.size
+
+            Label:
+                text: 'Votre routine bien-être, en un seul endroit.'
+                font_size: '15sp'
+                color: (0.52, 0.27, 0.42, 1)
+                halign: 'center'
+                valign: 'middle'
+                text_size: self.size
+
+        TextInput:
+            id: username
+            hint_text: 'Nom d\'utilisateur ou email'
+            multiline: False
+            size_hint_y: None
+            height: '52dp'
+            background_color: (1, 1, 1, 0.9)
+            foreground_color: (0.24, 0.20, 0.30, 1)
+            padding: [15, 12]
+            cursor_color: (0.52, 0.18, 0.38, 1)
+
+        TextInput:
+            id: password
+            hint_text: 'Mot de passe'
+            password: True
+            multiline: False
+            size_hint_y: None
+            height: '52dp'
+            background_color: (1, 1, 1, 0.9)
+            foreground_color: (0.24, 0.20, 0.30, 1)
+            padding: [15, 12]
+            cursor_color: (0.52, 0.18, 0.38, 1)
+
+        BoxLayout:
+            size_hint_y: None
+            height: '54dp'
+            spacing: 12
+            Button:
+                text: 'Connexion'
+                on_press: app.login()
+                bold: True
+                background_color: (0.16, 0.42, 0.78, 1)
+                color: (1, 1, 1, 1)
+
+            Button:
+                text: 'Créer un compte'
+                on_press: app.register()
+                bold: True
+                background_color: (0.85, 0.92, 1, 1)
+                color: (0.10, 0.28, 0.60, 1)
+
+        Label:
+            id: status
+            text: ''
+            color: (0.7, 0.0, 0.0, 1)
+            size_hint_y: None
+            height: '30dp'
+            font_size: '14sp'
+
+<DashboardScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 12
+        canvas.before:
+            Color:
+                rgba: (0.92, 0.96, 1, 1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            size_hint_y: None
+            height: '52dp'
+            padding: [8, 0]
+            canvas.before:
+                Color:
+                    rgba: (0.74, 0.86, 1, 1)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [16, 16, 16, 16]
+            Label:
+                text: 'Tableau de bord'
+                bold: True
+                font_size: '22sp'
+                color: (0.42, 0.15, 0.35, 1)
+            Button:
+                text: 'Déconnexion'
+                on_press: app.logout()
+                background_color: (0.14, 0.42, 0.78, 1)
+                color: (1, 1, 1, 1)
+
+        Label:
+            id: summary
+            text: 'Chargement...'
+            color: (0.27, 0.22, 0.30, 1)
+            halign: 'left'
+            valign: 'middle'
+            text_size: self.size
+            size_hint_y: None
+            height: '150dp'
+            padding: [10, 10]
+            canvas.before:
+                Color:
+                    rgba: (1, 1, 1, 0.7)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [18, 18, 18, 18]
+
+        BoxLayout:
+            size_hint_y: None
+            height: '50dp'
+            spacing: 8
+            Button:
+                text: 'Prédiction'
+                on_press: app.show_prediction()
+                background_color: (0.14, 0.42, 0.78, 1)
+                color: (1, 1, 1, 1)
+            Button:
+                text: 'Historique'
+                on_press: app.show_history()
+                background_color: (0.90, 0.80, 1, 1)
+                color: (0.20, 0.20, 0.20, 1)
+
+        Label:
+            id: status
+            text: ''
+            color: (0.1, 0.6, 0.2, 1)
+            size_hint_y: None
+            height: '24dp'
+            font_size: '13sp'
+
+        GridLayout:
+            cols: 2
+            spacing: 10
+            size_hint_y: None
+            height: '120dp'
+            padding: [0, 4]
+            TextInput:
+                id: start_date
+                hint_text: 'Date de début YYYY-MM-DD'
+                multiline: False
+                size_hint_y: None
+                height: '48dp'
+                background_color: (1, 1, 1, 1)
+                foreground_color: (0.2, 0.2, 0.2, 1)
+            TextInput:
+                id: end_date
+                hint_text: 'Date de fin YYYY-MM-DD'
+                multiline: False
+                size_hint_y: None
+                height: '48dp'
+                background_color: (1, 1, 1, 1)
+                foreground_color: (0.2, 0.2, 0.2, 1)
+            Button:
+                text: 'Enregistrer'
+                on_press: app.add_cycle()
+                size_hint_x: 1.5
+                bold: True
+                background_color: (0.14, 0.42, 0.78, 1)
+                color: (1, 1, 1, 1)
+
+        Label:
+            text: 'Historique'
+            bold: True
+            color: (0.42, 0.15, 0.35, 1)
+            size_hint_y: None
+            height: '30dp'
+
+        ScrollView:
+            do_scroll_x: False
+            GridLayout:
+                id: history_list
+                cols: 1
+                spacing: 8
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [4, 4]
